@@ -1,15 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Form, FormControl} from 'react-bootstrap';
 import uuid from '../../../utils/uuid';
+import useChat from '../useChat';
 
-const ChatBox = ({userId, activeChat, submitChat}) => {
+const ChatBox = ({userId}) => {
+  const {activeChat, saveMessage} = useChat();
   const [text, setText] = useState('');
-  const [chat, setChat] = useState(activeChat);
-
-  useEffect(() => {
-    // submitChat(chat);
-    setChat(activeChat);
-  }, [activeChat]);
 
   const updateMessages = () => {
     const message = {
@@ -19,13 +15,12 @@ const ChatBox = ({userId, activeChat, submitChat}) => {
       createdAt: String(new Date()),
     };
 
-    const updatedChat = {...chat, messages: [...chat.messages, message]};
-    setChat(updatedChat);
+    saveMessage(message);
   };
 
   return (
     <>
-      {chat.messages.map(message => (
+      {activeChat.messages.map(message => (
         <div>{message.text}</div>
       ))}
       <Form

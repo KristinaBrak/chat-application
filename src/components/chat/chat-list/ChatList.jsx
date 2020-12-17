@@ -1,15 +1,20 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Button} from 'react-bootstrap';
-import {ChatContext} from '../../context/ChatContext';
+import useChat from '../useChat';
 
-const ChatList = ({setIsActive}) => {
-  const [chats, setChats] = useContext(ChatContext);
+const ChatList = () => {
+  const {chats, activeChat, setActiveChat} = useChat();
 
   return (
     <ul>
       {chats.map(chat => (
         <li key={chat.id}>
-          <Button onClick={() => setIsActive(chat.id)}>{chat.id}</Button>
+          <Button
+            variant={activeChat?.id === chat.id ? 'warning' : 'primary'}
+            onClick={() => setActiveChat(chat.id)}
+          >
+            {chat.id}
+          </Button>
         </li>
       ))}
     </ul>
