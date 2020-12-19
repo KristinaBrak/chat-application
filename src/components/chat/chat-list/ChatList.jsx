@@ -1,21 +1,21 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
-import useChat from '../useChat';
+import Button from 'react-bootstrap/Button';
+import {ACTIVE_CHAT_STORAGE_KEY} from '../../../consts';
 
-const ChatList = () => {
-  const {chats, activeChat, setActiveChat} = useChat();
-
+const ChatList = ({chatList, activeChatId, setActiveChatId}) => {
   return (
     <ul>
-      {chats.map(chat => (
-        <li key={chat.id}>
-          <Button
-            variant={activeChat?.id === chat.id ? 'warning' : 'primary'}
-            onClick={() => setActiveChat(chat.id)}
-          >
-            {chat.id}
-          </Button>
-        </li>
+      {chatList.map(chat => (
+        <Button
+          variant={activeChatId === chat.id ? 'warning' : 'primary'}
+          key={chat.id}
+          onClick={() => {
+            localStorage.setItem(ACTIVE_CHAT_STORAGE_KEY, chat.id);
+            setActiveChatId(chat.id);
+          }}
+        >
+          <li key={chat.id}>{chat.name}</li>
+        </Button>
       ))}
     </ul>
   );
