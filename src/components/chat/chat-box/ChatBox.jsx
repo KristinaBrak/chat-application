@@ -45,13 +45,27 @@ const ChatBox = ({userId, activeChatId}) => {
     reload();
   };
 
+  const styleBox = {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'rgba(215, 227, 239, 1)',
+    width: '100%',
+  };
   if (!data || loading) {
-    return <div>Loading...</div>;
+    return <div style={styleBox}>Loading...</div>;
   }
   return (
-    <>
-      <ChatBoxDisplay activeChat={data} />
+    <div style={styleBox}>
+      <ChatBoxDisplay activeChat={data} style={{justifyContent: 'center'}} />
       <Form
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          margin: '10px',
+          marginTop: '0',
+          paddingTop: '8px',
+          borderTop: '2px solid rgba(54, 93, 135, 0.5)',
+        }}
         onSubmit={event => {
           event.preventDefault();
           updateChat();
@@ -66,11 +80,11 @@ const ChatBox = ({userId, activeChatId}) => {
           }}
           value={text}
         />
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" style={{padding: '0', width: '150px'}}>
           Send
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

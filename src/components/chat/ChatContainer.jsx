@@ -21,10 +21,10 @@ const ChatContainer = ({userId}) => {
   }
 
   return (
-    <>
+    <div style={{display: 'flex', height: '100vh'}}>
       <ChatList chatList={data} setActiveChatId={setActiveChatId} activeChatId={activeChatId} />
       <ChatBox userId={userId} activeChatId={activeChatId} />
-    </>
+    </div>
   );
 };
 

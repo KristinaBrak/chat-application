@@ -1,23 +1,37 @@
 import React from 'react';
+import {Nav} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import {ACTIVE_CHAT_STORAGE_KEY} from '../../../consts';
 
 const ChatList = ({chatList, activeChatId, setActiveChatId}) => {
   return (
-    <ul>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        borderRight: '2px solid rgba(54, 93, 135, 1)',
+        borderLeft: '2px solid rgba(54, 93, 135, 1)',
+        width: '20%',
+        height: '100vh',
+        overflow: 'auto',
+      }}
+    >
       {chatList.map(chat => (
-        <Button
-          variant={activeChatId === chat.id ? 'warning' : 'primary'}
-          key={chat.id}
-          onClick={() => {
-            localStorage.setItem(ACTIVE_CHAT_STORAGE_KEY, chat.id);
-            setActiveChatId(chat.id);
-          }}
-        >
-          <li key={chat.id}>{chat.name}</li>
-        </Button>
+        <Nav.Link key={chat.id}>
+          <Button
+            variant={activeChatId === chat.id ? 'primary' : 'outline-primary'}
+            style={{listStyleType: 'none', width: '100%'}}
+            key={chat.id}
+            onClick={() => {
+              localStorage.setItem(ACTIVE_CHAT_STORAGE_KEY, chat.id);
+              setActiveChatId(chat.id);
+            }}
+          >
+            {chat.name}
+          </Button>
+        </Nav.Link>
       ))}
-    </ul>
+    </div>
   );
 };
 
