@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {KEY} from '../../consts';
+import {KEY} from '../consts';
 
 const useAPI = initialUrl => {
   const [url, setUrl] = useState(initialUrl);

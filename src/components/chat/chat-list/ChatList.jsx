@@ -12,7 +12,6 @@ const ChatList = ({chatList, activeChatId, setActiveChatId}) => {
         borderRight: '2px solid rgba(54, 93, 135, 1)',
         borderLeft: '2px solid rgba(54, 93, 135, 1)',
         width: '20%',
-        height: '100vh',
         overflow: 'auto',
       }}
     >

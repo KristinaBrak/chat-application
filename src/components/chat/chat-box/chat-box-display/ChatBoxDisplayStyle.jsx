@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ChatBoxDisplayStyle = styled.ul`
-  height: 85%;
+  height: 80%;
   overflow: auto;
   padding-left: 10px;
   padding-right: 10px;

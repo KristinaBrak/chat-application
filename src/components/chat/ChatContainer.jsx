@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import {ACTIVE_CHAT_ID, ACTIVE_CHAT_STORAGE_KEY, CHAT_IDS, URL} from '../../consts';
-import useAPI from './ApiHook';
+import useAPI from '../../hooks/ApiHook';
 import ChatBox from './chat-box/ChatBox';
 import ChatList from './chat-list/ChatList';
 
-const ChatContainer = ({userId}) => {
+const ChatContainer = ({user}) => {
   const [loading, error, data, reload] = useAPI(URL + CHAT_IDS);
   const [activeChatId, setActiveChatId] = useState(null);
 
@@ -21,9 +22,9 @@ const ChatContainer = ({userId}) => {
   }
 
   return (
-    <div style={{display: 'flex', height: '100vh'}}>
+    <div style={{display: 'flex', height: '100%'}}>
       <ChatList chatList={data} setActiveChatId={setActiveChatId} activeChatId={activeChatId} />
-      <ChatBox userId={userId} activeChatId={activeChatId} />
+      <ChatBox userId={user.id} activeChatId={activeChatId} />
     </div>
   );
 };

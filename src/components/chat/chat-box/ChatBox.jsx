@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Button, Form, FormControl} from 'react-bootstrap';
 import {KEY, POLLING_INTERVAL_SEC, URL} from '../../../consts';
 import uuid from '../../../utils/uuid';
-import useAPI from '../ApiHook';
+import useAPI from '../../../hooks/ApiHook';
 import ChatBoxDisplay from './chat-box-display/ChatBoxDisplay';
+import useEnterSubmit from '../../../hooks/EnterSubmitHook';
 
 const ChatBox = ({userId, activeChatId}) => {
   const [loading, error, data, reload, changeUrl] = useAPI(URL + activeChatId);
@@ -44,6 +45,8 @@ const ChatBox = ({userId, activeChatId}) => {
 
     reload();
   };
+
+  useEnterSubmit(updateChat);
 
   const styleBox = {
     display: 'flex',
