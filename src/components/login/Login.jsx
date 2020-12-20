@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import bcrypt from 'bcryptjs';
-import {users} from './UsersSchema';
+// import {users} from '../../initial-data/UsersSchema';
 import {useHistory} from 'react-router-dom';
 import useEnterSubmit from '../../hooks/EnterSubmitHook';
 
@@ -11,33 +11,26 @@ const Login = ({user, setUser}) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const history = useHistory();
-  
+
   const login = () => {
-    verifyUser();
-    if (user) {
-      history.push('/chat');
-    }
-  };
-
-  useEnterSubmit(login);
-
-  const verifyUser = () => {
     setPasswordError('');
     setEmailError('');
-
+    const users = JSON.parse(localStorage.getItem('users'));
     const foundUser = users.find(({email}) => email === emailText);
     if (!foundUser) {
       setEmailError('Invalid user');
     } else {
       const isAuthenticated = bcrypt.compareSync(passwordText, foundUser.password);
-
       if (isAuthenticated) {
-        setUser({...user, id: foundUser.id, email: emailText, password: passwordText});
+        setUser(foundUser);
+        history.push('/chat');
       } else {
         setPasswordError('Incorrect password');
       }
     }
   };
+
+  useEnterSubmit(login);
 
   return (
     <div

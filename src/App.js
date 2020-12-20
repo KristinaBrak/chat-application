@@ -1,35 +1,61 @@
 import ChatContainer from './components/chat/ChatContainer';
 import Login from './components/login/Login';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
-import React, {useState} from 'react';
-import ChatBoxDisplay from './components/chat/chat-box/chat-box-display/ChatBoxDisplay';
+import React, {useEffect, useState} from 'react';
+import Profile from './components/profile/Profile';
+import {users} from './initial-data/UsersSchema';
 
 const App = () => {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (!localStorage.getItem('users')) {
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+  }, []);
+
+  const updateUsers = updatedUser => {
+    setUser(updatedUser);
+    const localStorageUsers = JSON.parse(localStorage.getItem('users'));
+    const newUsers = localStorageUsers.map(localStorageUser =>
+      localStorageUser.id === updatedUser.id ? updatedUser : localStorageUser
+    );
+    localStorage.setItem('users', JSON.stringify(newUsers));
+  };
 
   return (
     <div style={{height: '100vh'}}>
       <Router>
         <nav>
           <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/chat">Chat</Link>
-            </li>
+            {!user ? (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link to="/chat">Chat</Link>
+                </li>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
         <Switch>
           <Route exact path="/login">
-            <Login user={user} setUser={setUser} />
+            <Login user={user} setUser={updateUsers} />
           </Route>
           {user ? (
             <>
               <Route exact path="/chat">
                 <ChatContainer user={user} />
               </Route>
-              {/* <Route exact path="/profile"></Route> */}
+              <Route exact path="/profile">
+                <Profile user={user} setUser={updateUsers} />
+              </Route>
             </>
           ) : (
             <Redirect to={{pathname: '/login'}} />
