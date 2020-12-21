@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Form, Button, Alert} from 'react-bootstrap';
-import {SALT_ROUNDS} from '../../consts';
 import bcrypt from 'bcryptjs';
+import {SALT_ROUNDS} from '../../consts';
 import './profile.css';
 
 const Profile = ({user, setUser}) => {

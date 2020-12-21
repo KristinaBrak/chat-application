@@ -32,17 +32,16 @@ const useAPI = initialUrl => {
           setLoading(false);
           setShouldReload(false);
         })
-        .catch(error => {
-          console.log(error);
+        .catch(err => {
           setShouldReload(false);
           setLoading(false);
-          setError(error.message);
+          setError(err.message);
         });
     }
   };
 
-  const changeUrl = url => {
-    setUrl(url);
+  const changeUrl = newUrl => {
+    setUrl(newUrl);
     setShouldReload(true);
     setLoading(true);
   };

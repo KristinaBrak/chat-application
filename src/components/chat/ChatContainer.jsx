@@ -7,7 +7,7 @@ import ChatList from './chat-list/ChatList';
 import './chat-container.css';
 
 const ChatContainer = ({user}) => {
-  const [loading, error, data, reload] = useAPI(URL + CHAT_IDS);
+  const [loading, , data] = useAPI(URL + CHAT_IDS);
   const [activeChatId, setActiveChatId] = useState(null);
 
   useEffect(() => {

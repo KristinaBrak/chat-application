@@ -9,7 +9,7 @@ import Loader from '../../miscellaneous/Loader';
 import './chat-box.css';
 
 const ChatBox = ({userId, activeChatId}) => {
-  const [loading, error, data, reload, changeUrl] = useAPI(URL + activeChatId);
+  const [loading, , data, reload, changeUrl] = useAPI(URL + activeChatId);
   const [text, setText] = useState('');
   const [sendPending, setSendPending] = useState(false);
 

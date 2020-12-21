@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import ChatContainer from './components/chat/ChatContainer';
 import Login from './components/login/Login';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Profile from './components/profile/Profile';
-import {users} from './initial-data/UsersSchema';
+import users from './initial-data/UsersSchema';
 import NavBar from './components/nav-bar/NavBar';
 
 const App = () => {

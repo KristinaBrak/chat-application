@@ -13,7 +13,7 @@ const ChatBoxDisplay = ({activeUserId, activeChat}) => {
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({behavior: 'smooth'});
   }, [activeChat]);
-  
+
   return (
     <ul>
       {activeChat.messages.map(message => (
@@ -24,7 +24,7 @@ const ChatBoxDisplay = ({activeUserId, activeChat}) => {
           </div>
         </li>
       ))}
-      <li ref={messagesEndRef}></li>
+      <li ref={messagesEndRef} />
     </ul>
   );
 };
