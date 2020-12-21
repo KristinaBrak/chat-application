@@ -1,7 +1,7 @@
+import React, {useEffect, useState} from 'react';
 import ChatContainer from './components/chat/ChatContainer';
 import Login from './components/login/Login';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
-import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Profile from './components/profile/Profile';
 import {users} from './initial-data/UsersSchema';
 import NavBar from './components/nav-bar/NavBar';
@@ -30,7 +30,7 @@ const App = () => {
         <NavBar user={user} />
         <Switch>
           <Route exact path="/login">
-            <Login user={user} setUser={updateUsers} />
+            <Login setUser={updateUsers} />
           </Route>
           {user ? (
             <>

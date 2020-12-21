@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import bcrypt from 'bcryptjs';
-// import {users} from '../../initial-data/UsersSchema';
 import {useHistory} from 'react-router-dom';
 import useEnterSubmit from '../../hooks/EnterSubmitHook';
+import './../../styles/login/login.css';
 
-const Login = ({user, setUser}) => {
+const Login = ({setUser}) => {
   const [emailText, setEmailText] = useState('');
   const [passwordText, setPasswordText] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -33,34 +33,19 @@ const Login = ({user, setUser}) => {
   useEnterSubmit(login);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        margin: '0',
-        marginTop: '20px',
-      }}
-    >
+    <div className="login">
       <Form
-        style={{
-          border: '2px solid rgba(54, 93, 135, 1)',
-          borderRadius: '5px',
-          padding: '20px',
-          maxWidth: '400px',
-          minWidth: '280px',
-          width: '100%',
-        }}
+        className="form"
         onSubmit={event => {
           event.preventDefault();
           login();
         }}
       >
-        <h2 style={{color: 'rgba(54, 93, 135, 1)', paddingBottom: '10px'}}>Login</h2>
-        <Form.Group controlId="formBasicEmail" style={{width: '100%'}}>
+        <h2>Login</h2>
+        <Form.Group controlId="formBasicEmail" className="form-group">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            style={{width: '100%'}}
+            className="login-input"
             isInvalid={emailError}
             type="email"
             placeholder="Enter email"
@@ -71,10 +56,10 @@ const Login = ({user, setUser}) => {
           <Form.Text className="text-muted">{emailError}</Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword" style={{width: '100%'}}>
+        <Form.Group controlId="formBasicPassword" className="form-group">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            style={{width: '100%'}}
+            className="login-input"
             isInvalid={passwordError}
             type="password"
             placeholder="Enter password"
@@ -85,7 +70,7 @@ const Login = ({user, setUser}) => {
           <Form.Text className="text-muted">{passwordError}</Form.Text>
         </Form.Group>
 
-        <Button variant="primary" type="submit" style={{width: '100%', marginTop: '10px'}}>
+        <Button variant="primary" type="submit" className="login-button">
           Login
         </Button>
       </Form>

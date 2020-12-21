@@ -4,6 +4,7 @@ import useAPI from '../../hooks/ApiHook';
 import Loader from '../miscellaneous/Loader';
 import ChatBox from './chat-box/ChatBox';
 import ChatList from './chat-list/ChatList';
+import './../../styles/chat/chat-container.css';
 
 const ChatContainer = ({user}) => {
   const [loading, error, data, reload] = useAPI(URL + CHAT_IDS);
@@ -22,7 +23,7 @@ const ChatContainer = ({user}) => {
   }
 
   return (
-    <div style={{display: 'flex', height: '100%'}}>
+    <div className="chat-container" >
       <ChatList chatList={data} setActiveChatId={setActiveChatId} activeChatId={activeChatId} />
       <ChatBox userId={user.id} activeChatId={activeChatId} />
     </div>

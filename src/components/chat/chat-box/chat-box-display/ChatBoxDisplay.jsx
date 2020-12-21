@@ -1,5 +1,6 @@
 import React from 'react';
 import {UNAVAILABLE_USER} from '../../../../consts';
+import './../../../../styles/chat/chat-box-display.css';
 
 const ChatBoxDisplay = ({activeUserId, activeChat}) => {
   function getUserName(userId) {
@@ -9,55 +10,12 @@ const ChatBoxDisplay = ({activeUserId, activeChat}) => {
   }
 
   return (
-    <ul
-      style={{
-        height: '80%',
-        overflow: 'auto',
-        paddingLeft: '20px',
-        paddingRight: '20px',
-        margin: '0',
-      }}
-    >
+    <ul>
       {activeChat.messages.map(message => (
-        <li
-          key={message.id}
-          style={{
-            listStyleType: 'none',
-            marginTop: '10px',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <div
-            style={
-              message.userId === activeUserId
-                ? {alignSelf: 'flex-end', textAlign: 'right'}
-                : {alignSelf: 'flex-start', textAlign: 'left'}
-            }
-          >
-            <p
-              style={{
-                fontWeight: 'bold',
-                marginBottom: '0',
-                paddingBottom: '0',
-              }}
-            >
-              {getUserName(message.userId)}
-            </p>
-            <p
-              style={{
-                marginBottom: '0',
-                border: '1px solid white',
-                background: 'white',
-                borderRadius: '15px',
-                display: 'inline-block',
-                padding: '10px',
-                paddingBottom: '5px',
-                wordBreak: 'break-all',
-              }}
-            >
-              {message.text}
-            </p>
+        <li key={message.id}>
+          <div className={message.userId === activeUserId ? 'right' : 'left'}>
+            <p className="user-name">{getUserName(message.userId)}</p>
+            <p className="message">{message.text}</p>
           </div>
         </li>
       ))}

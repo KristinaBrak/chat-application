@@ -1,0 +1,41 @@
+ul {
+  height: 80%;
+  overflow: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  align-self: flex-end;
+}
+
+.left {
+  align-self: flex-start;
+}
+
+.user-name {
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 14px;
+}
+
+.message {
+  margin-bottom: 0;
+  border: 1px solid white;
+  background: white;
+  border-radius: 15px;  justify-self: center;
+  display: inline-block;
+  padding: 10px;
+  padding-bottom: 5px;
+  word-break: break-all;
+  font-size: 18px;
+}

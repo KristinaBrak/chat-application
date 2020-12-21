@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Form, Button, Alert} from 'react-bootstrap';
 import {SALT_ROUNDS} from '../../consts';
 import bcrypt from 'bcryptjs';
+import './../../styles/profile/profile.css';
 
 const Profile = ({user, setUser}) => {
   const [email, setEmail] = useState(null);
@@ -38,42 +39,28 @@ const Profile = ({user, setUser}) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        margin: '0',
-        marginTop: '20px',
-      }}
-    >
+    <div className="profile">
       <Form
         onSubmit={event => {
           event.preventDefault();
           updateUser();
           setShowAlert(true);
         }}
-        style={{
-          borderRadius: '5px',
-          padding: '20px',
-          maxWidth: '400px',
-          minWidth: '280px',
-          width: '100%',
-          border: '2px solid rgba(54, 93, 135, 1)',
-        }}
+        className="form"
       >
-        <h2 style={{color: 'rgba(54, 93, 135, 1)', paddingBottom: '10px'}}>Profile</h2>
+        <h2>Profile</h2>
         <Form.Group controlId="formName">
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
             placeholder={user.name}
+            className="profile-input"
             onChange={({target: {value}}) => {
               setName(value);
             }}
           />
         </Form.Group>
-        <Form.Group controlId="formEmail">
+        <Form.Group controlId="formEmail" className="form-group">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -81,10 +68,11 @@ const Profile = ({user, setUser}) => {
             onChange={({target: {value}}) => {
               setEmail(value);
             }}
+            className="profile-input"
           />
         </Form.Group>
 
-        <Form.Group controlId="formPassword">
+        <Form.Group controlId="formPassword" className="form-group">
           <Form.Label>Change Password</Form.Label>
           <Form.Control
             type="password"
@@ -92,11 +80,12 @@ const Profile = ({user, setUser}) => {
             onChange={({target: {value}}) => {
               setPassword(value);
             }}
+            className="profile-input"
           />
         </Form.Group>
 
         {showAlert ? <Alert variant="success">Profile updated</Alert> : null}
-        <Button variant="primary" type="submit" style={{width: '100%', marginTop: '10px'}}>
+        <Button variant="primary" type="submit" className="profile-button">
           Submit
         </Button>
       </Form>

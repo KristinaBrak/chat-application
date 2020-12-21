@@ -1,0 +1,28 @@
+.nav-bar {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.authenticated-item {
+  padding-right: 20px;
+}
+
+.link {
+  color: white;
+  padding: 5px;
+  margin: 0;
+  font-size: 20px;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.link:active {
+  border: 1px solid white;
+  border-radius: 7px;
+  padding: 5px;
+  margin: 0;
+}

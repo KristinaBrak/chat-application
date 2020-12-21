@@ -6,6 +6,7 @@ import useAPI from '../../../hooks/ApiHook';
 import ChatBoxDisplay from './chat-box-display/ChatBoxDisplay';
 import useEnterSubmit from '../../../hooks/EnterSubmitHook';
 import Loader from '../../miscellaneous/Loader';
+import './../../../styles/chat/chat-box.css';
 
 const ChatBox = ({userId, activeChatId}) => {
   const [loading, error, data, reload, changeUrl] = useAPI(URL + activeChatId);
@@ -52,29 +53,15 @@ const ChatBox = ({userId, activeChatId}) => {
 
   useEnterSubmit(updateChat);
 
-  const styleBox = {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: 'rgba(215, 227, 239, 1)',
-    width: '100%',
-  };
-
   return (
-    <div style={styleBox}>
+    <div className="chat-box">
       {!data || loading ? (
-        <Loader size="medium" />
+        <Loader size="md" />
       ) : (
         <>
-          <ChatBoxDisplay activeUserId={userId} activeChat={data} style={{justifyContent: 'center'}} />
+          <ChatBoxDisplay activeUserId={userId} activeChat={data} />
           <Form
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              margin: '10px',
-              marginTop: '0',
-              paddingTop: '8px',
-              borderTop: '2px solid rgba(54, 93, 135, 0.5)',
-            }}
+            className="user-input"
             onSubmit={event => {
               event.preventDefault();
               updateChat();
@@ -89,8 +76,8 @@ const ChatBox = ({userId, activeChatId}) => {
               }}
               value={text}
             />
-            <Button variant="primary" type="submit" style={{padding: '0', width: '150px'}}>
-              Send
+            <Button variant="primary" className="send-button" type="submit">
+              <p>Send</p>
             </Button>
           </Form>
         </>
