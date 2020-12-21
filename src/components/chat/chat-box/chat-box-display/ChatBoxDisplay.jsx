@@ -24,7 +24,7 @@ const ChatBoxDisplay = ({activeUserId, activeChat}) => {
           </div>
         </li>
       ))}
-      <li ref={messagesEndRef} />
+      <li ref={messagesEndRef} style={{margin: 0}} />
     </ul>
   );
 };
