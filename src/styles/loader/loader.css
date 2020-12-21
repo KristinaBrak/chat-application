@@ -1,0 +1,13 @@
+.loader {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  padding-top: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  margin: 5px;
+  margin-top: 20px;
+}

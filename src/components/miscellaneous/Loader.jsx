@@ -1,34 +1,12 @@
 import {Spinner} from 'react-bootstrap';
+import '../../styles/loader/loader.css';
 
 const Loader = ({size}) => {
-  const loaderStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-    margin: '10px',
-    paddingTop: '8px',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
   return (
-    <div style={loaderStyle}>
-      <Spinner
-        animation="grow"
-        variant="primary"
-        size={size}
-        style={{margin: '5px', marginTop: '20px'}}
-      />
-      <Spinner
-        animation="grow"
-        variant="primary"
-        size={size}
-        style={{margin: '5px', marginTop: '20px'}}
-      />
-      <Spinner
-        animation="grow"
-        variant="primary"
-        size={size}
-        style={{margin: '5px', marginTop: '20px'}}
-      />
+    <div className="loader">
+      <Spinner variant="primary" className="spinner" animation="grow" size={size} />
+      <Spinner variant="primary" className="spinner" animation="grow" size={size} />
+      <Spinner variant="primary" className="spinner" animation="grow" size={size} />
     </div>
   );
 };
