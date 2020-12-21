@@ -23,10 +23,21 @@ more information.
 
 ## Available Users
 
+Login to app with these users:
+
 | Email                     |     Password      |
 | ------------------------- | :---------------: |
 | kitttens@khealth.com      | kiitensAreTheBest |
 | mr.doggo@khealth.com      |    woofwoof123    |
 | llamaInMyRoom@khealth.com |    timtimpirim    |
 
-### My Journey
+## More Details
+
+Polling interval and jsonbin secret key can be changed in consts.js file.
+
+## My Journey
+I built this project using best Agile practises: 
+
+![Progress](https://github.com/KristinaBrak/chat-application/blob/main/public/first.jpg 'In the middle of the project')
+
+![Done](https://github.com/KristinaBrak/chat-application/blob/main/public/second.jpg 'Done!')
