@@ -1,5 +1,3 @@
-export const userId = '1';
-
 export const KEY = '$2b$10$4hgmrek9qSMeyzBmnxOhKOaDqWFY8XdPweNc1zwlFSLPp5G/B0bie';
 
 export const URL = 'https://api.jsonbin.io/b' + '/';
@@ -13,3 +11,10 @@ export const POLLING_INTERVAL_SEC = 2000;
 export const ACTIVE_CHAT_STORAGE_KEY = 'activeChatId';
 
 export const SALT_ROUNDS = 10;
+
+export const UNAVAILABLE_USER = {
+  id: '0',
+  email: 'unavailabe',
+  password: 'unavailabe',
+  name: 'unavailabe',
+};

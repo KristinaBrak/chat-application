@@ -1,4 +1,7 @@
+import {UNAVAILABLE_USER} from '../consts';
+
 export const users = [
+  UNAVAILABLE_USER,
   {
     id: '1',
     email: 'kitttens@khealth.com',
@@ -15,6 +18,6 @@ export const users = [
     id: '3',
     email: 'llamaInMyRoom@khealth.com',
     password: '$2a$10$N5JAcO24KqHUDFYSk2jfr.ZgKw275vYI.Ptd/L.lX1bGT33ZkGbbC', //'timtimpirim',
-    name: 'Aron Nora',
+    name: 'Aron Nova',
   },
 ];

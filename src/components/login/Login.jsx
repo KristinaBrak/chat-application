@@ -38,6 +38,8 @@ const Login = ({user, setUser}) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        margin: '0',
+        marginTop: '20px',
       }}
     >
       <Form
@@ -54,6 +56,7 @@ const Login = ({user, setUser}) => {
           login();
         }}
       >
+        <h2 style={{color: 'rgba(54, 93, 135, 1)', paddingBottom: '10px'}}>Login</h2>
         <Form.Group controlId="formBasicEmail" style={{width: '100%'}}>
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -82,7 +85,7 @@ const Login = ({user, setUser}) => {
           <Form.Text className="text-muted">{passwordError}</Form.Text>
         </Form.Group>
 
-        <Button variant="primary" type="submit" style={{width: '100%'}}>
+        <Button variant="primary" type="submit" style={{width: '100%', marginTop: '10px'}}>
           Login
         </Button>
       </Form>

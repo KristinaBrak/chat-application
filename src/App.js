@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-rout
 import React, {useEffect, useState} from 'react';
 import Profile from './components/profile/Profile';
 import {users} from './initial-data/UsersSchema';
+import NavBar from './components/nav-bar/NavBar';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -26,24 +27,7 @@ const App = () => {
   return (
     <div style={{height: '100vh'}}>
       <Router>
-        <nav>
-          <ul>
-            {!user ? (
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            ) : (
-              <>
-                <li>
-                  <Link to="/chat">Chat</Link>
-                </li>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
+        <NavBar user={user} />
         <Switch>
           <Route exact path="/login">
             <Login user={user} setUser={updateUsers} />

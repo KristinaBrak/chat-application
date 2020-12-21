@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {useHistory} from 'react-router-dom';
 import {ACTIVE_CHAT_ID, ACTIVE_CHAT_STORAGE_KEY, CHAT_IDS, URL} from '../../consts';
 import useAPI from '../../hooks/ApiHook';
+import Loader from '../miscellaneous/Loader';
 import ChatBox from './chat-box/ChatBox';
 import ChatList from './chat-list/ChatList';
 
@@ -18,7 +18,7 @@ const ChatContainer = ({user}) => {
   }, []);
 
   if (!data || loading) {
-    return <div>Loading</div>;
+    return <Loader size="lg" />;
   }
 
   return (

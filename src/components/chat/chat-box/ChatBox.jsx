@@ -5,6 +5,7 @@ import uuid from '../../../utils/uuid';
 import useAPI from '../../../hooks/ApiHook';
 import ChatBoxDisplay from './chat-box-display/ChatBoxDisplay';
 import useEnterSubmit from '../../../hooks/EnterSubmitHook';
+import Loader from '../../miscellaneous/Loader';
 
 const ChatBox = ({userId, activeChatId}) => {
   const [loading, error, data, reload, changeUrl] = useAPI(URL + activeChatId);
@@ -24,6 +25,9 @@ const ChatBox = ({userId, activeChatId}) => {
   }, []);
 
   const updateChat = () => {
+    if (text === '') {
+      return;
+    }
     const message = {
       id: uuid(),
       userId,
@@ -54,39 +58,43 @@ const ChatBox = ({userId, activeChatId}) => {
     backgroundColor: 'rgba(215, 227, 239, 1)',
     width: '100%',
   };
-  if (!data || loading) {
-    return <div style={styleBox}>Loading...</div>;
-  }
+
   return (
     <div style={styleBox}>
-      <ChatBoxDisplay activeChat={data} style={{justifyContent: 'center'}} />
-      <Form
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          margin: '10px',
-          marginTop: '0',
-          paddingTop: '8px',
-          borderTop: '2px solid rgba(54, 93, 135, 0.5)',
-        }}
-        onSubmit={event => {
-          event.preventDefault();
-          updateChat();
-          setText('');
-        }}
-      >
-        <FormControl
-          as="input"
-          type="text"
-          onChange={({target: {value}}) => {
-            setText(value);
-          }}
-          value={text}
-        />
-        <Button variant="primary" type="submit" style={{padding: '0', width: '150px'}}>
-          Send
-        </Button>
-      </Form>
+      {!data || loading ? (
+        <Loader size="medium" />
+      ) : (
+        <>
+          <ChatBoxDisplay activeUserId={userId} activeChat={data} style={{justifyContent: 'center'}} />
+          <Form
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              margin: '10px',
+              marginTop: '0',
+              paddingTop: '8px',
+              borderTop: '2px solid rgba(54, 93, 135, 0.5)',
+            }}
+            onSubmit={event => {
+              event.preventDefault();
+              updateChat();
+              setText('');
+            }}
+          >
+            <FormControl
+              as="input"
+              type="text"
+              onChange={({target: {value}}) => {
+                setText(value);
+              }}
+              value={text}
+            />
+            <Button variant="primary" type="submit" style={{padding: '0', width: '150px'}}>
+              Send
+            </Button>
+          </Form>
+        </>
+      )}
     </div>
   );
 };
