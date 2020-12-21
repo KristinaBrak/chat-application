@@ -25,7 +25,7 @@ const App = () => {
   };
 
   return (
-    <div style={{height: '100vh'}}>
+    <div style={{height: '94vh'}}>
       <Router>
         <NavBar user={user} />
         <Switch>

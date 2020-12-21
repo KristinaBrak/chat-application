@@ -1,5 +1,5 @@
 import {Spinner} from 'react-bootstrap';
-import '../../styles/loader/loader.css';
+import './loader.css';
 
 const Loader = ({size}) => {
   return (

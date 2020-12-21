@@ -6,11 +6,12 @@ import useAPI from '../../../hooks/ApiHook';
 import ChatBoxDisplay from './chat-box-display/ChatBoxDisplay';
 import useEnterSubmit from '../../../hooks/EnterSubmitHook';
 import Loader from '../../miscellaneous/Loader';
-import './../../../styles/chat/chat-box.css';
+import './chat-box.css';
 
 const ChatBox = ({userId, activeChatId}) => {
   const [loading, error, data, reload, changeUrl] = useAPI(URL + activeChatId);
   const [text, setText] = useState('');
+  const [sendPending, setSendPending] = useState(false);
 
   useEffect(() => {
     changeUrl(URL + activeChatId);
@@ -26,7 +27,7 @@ const ChatBox = ({userId, activeChatId}) => {
   }, []);
 
   const updateChat = () => {
-    if (text === '') {
+    if (text === '' || sendPending) {
       return;
     }
     const message = {
@@ -37,7 +38,8 @@ const ChatBox = ({userId, activeChatId}) => {
     };
     const updatedMessages = data.messages.concat(message);
     const updatedChat = {...data, messages: updatedMessages};
-
+    setText('');
+    setSendPending(true);
     fetch(URL + activeChatId, {
       method: 'PUT',
       headers: {
@@ -46,9 +48,14 @@ const ChatBox = ({userId, activeChatId}) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedChat),
-    });
-
-    reload();
+    })
+      .then(() => {
+        reload();
+        setSendPending(false);
+      })
+      .catch(() => {
+        setSendPending(false);
+      });
   };
 
   useEnterSubmit(updateChat);
@@ -65,7 +72,6 @@ const ChatBox = ({userId, activeChatId}) => {
             onSubmit={event => {
               event.preventDefault();
               updateChat();
-              setText('');
             }}
           >
             <FormControl

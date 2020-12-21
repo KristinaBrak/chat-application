@@ -3,7 +3,7 @@ import {Form, Button} from 'react-bootstrap';
 import bcrypt from 'bcryptjs';
 import {useHistory} from 'react-router-dom';
 import useEnterSubmit from '../../hooks/EnterSubmitHook';
-import './../../styles/login/login.css';
+import './login.css';
 
 const Login = ({setUser}) => {
   const [emailText, setEmailText] = useState('');

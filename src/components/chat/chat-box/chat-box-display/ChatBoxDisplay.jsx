@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {UNAVAILABLE_USER} from '../../../../consts';
-import './../../../../styles/chat/chat-box-display.css';
+import './chat-box-display.css';
 
 const ChatBoxDisplay = ({activeUserId, activeChat}) => {
+  const messagesEndRef = useRef(null);
   function getUserName(userId) {
     const users = JSON.parse(localStorage.getItem('users'));
     const foundUser = users.find(user => user.id === userId) ?? UNAVAILABLE_USER;
     return foundUser.name;
   }
 
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({behavior: 'smooth'});
+  }, [activeChat]);
+  
   return (
     <ul>
       {activeChat.messages.map(message => (
@@ -19,6 +24,7 @@ const ChatBoxDisplay = ({activeUserId, activeChat}) => {
           </div>
         </li>
       ))}
+      <li ref={messagesEndRef}></li>
     </ul>
   );
 };

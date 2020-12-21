@@ -2,7 +2,7 @@ import React from 'react';
 import {Nav} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import {ACTIVE_CHAT_STORAGE_KEY} from '../../../consts';
-import './../../../styles/chat/chat-list.css';
+import './chat-list.css';
 
 const ChatList = ({chatList, activeChatId, setActiveChatId}) => {
   return (
